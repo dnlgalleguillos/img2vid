@@ -38,10 +38,10 @@ python image_to_video.py <input_image_path> <output_video_path.mp4>
 **Example:**
 
 ```bash
-python image_to_video.py my_image.jpg my_video.mp4
+python image_to_video.py atacama_sunset.jpg atacama_sunset_video.mp4
 ```
 
-Replace `my_image.jpg` with the path to your input image and `my_video.mp4` with the desired path for the output video.
+Replace `atacama_sunset.jpg` with the path to your input image and `atacama_sunset_video.mp4` with the desired path for the output video.
 
 ## Output Video Specifications
 
