@@ -1,55 +1,58 @@
 # Image to Video Converter
 
-This Python script uses FFmpeg to convert a single image into a 5-second .mp4 video with a resolution of 1920x1080 (Full HD).
+## Description
 
-## Dependencies
+This script, `image_to_video.py`, converts a single static image file into a 5-second video file. It uses FFmpeg to perform the conversion, applying scaling and padding to fit a Full HD (1920x1080) resolution while maintaining the original image's aspect ratio. A silent audio track is also included in the output video.
+
+## Requirements
 
 - Python 3
 - FFmpeg
 
-## Installation of FFmpeg
+## Installation
 
-Ensure FFmpeg is installed and accessible in your system's PATH.
+1.  **FFmpeg**:
+    This script requires FFmpeg to be installed on your system.
+    *   On **Ubuntu/Debian-based** systems, you can install it using:
+        ```bash
+        sudo apt update
+        sudo apt install ffmpeg
+        ```
+    *   On **Fedora**, you can install it using:
+        ```bash
+        sudo dnf install ffmpeg
+        ```
+    *   For other operating systems, please refer to the official FFmpeg website for installation instructions.
 
-### On Fedora Linux:
-```bash
-sudo dnf install ffmpeg
-```
-
-### On Debian/Ubuntu:
-```bash
-sudo apt update
-sudo apt install ffmpeg
-```
+2.  **Python 3**:
+    Python 3 is usually pre-installed on modern Linux distributions. If not, please install it using your system's package manager.
 
 ## Usage
 
+To run the script, use the following command in your terminal:
+
 ```bash
-python image_to_video.py <path_to_your_image> [options]
+python image_to_video.py <input_image_path> <output_video_path.mp4>
 ```
-
-**Arguments:**
-- `input_image`: Path to the input image file (e.g., `sample.jpg`, `images/my_photo.png`). This is a required argument.
-
-**Options:**
-- `-o OUTPUT_VIDEO`, `--output OUTPUT_VIDEO`: Path for the output video file (e.g., `my_video.mp4`). If not specified, the output will be named after the input image with an `.mp4` extension (e.g., if input is `photo.jpg`, output will be `photo.mp4`).
 
 **Example:**
 
 ```bash
-python image_to_video.py sample.jpg
+python image_to_video.py my_image.jpg my_video.mp4
 ```
 
-This will create `sample.mp4` in the same directory.
+Replace `my_image.jpg` with the path to your input image and `my_video.mp4` with the desired path for the output video.
 
-```bash
-python image_to_video.py assets/landscape.png -o videos/landscape_video.mp4
-```
-This will use `assets/landscape.png` as input and create `videos/landscape_video.mp4`.
+## Output Video Specifications
 
-## Video Specifications
-- Duration: 5 seconds
-- Resolution: 1920x1080
-- Format: MP4 (H.264 codec)
-- Pixel Format: yuv420p (for wide compatibility)
-- Scaling: The image is scaled to fit within 1920x1080 while maintaining its aspect ratio. Black bars will be added if the aspect ratio does not match 16:9.
+-   **Format**: MP4
+-   **Resolution**: 1920x1080 (Full HD)
+-   **Duration**: 5 seconds
+-   **Video Codec**: H.264 (libx264)
+-   **Audio**: Silent AAC track
+
+## Note on Image Aspect Ratio
+
+The script is designed to output a video with a 16:9 aspect ratio (1920x1080).
+-   If the input image's aspect ratio is already 16:9, it will be scaled to fit 1920x1080.
+-   If the input image's aspect ratio is different from 16:9 (e.g., 4:3, 1:1), it will be scaled down to fit within the 1920x1080 frame while preserving its original aspect ratio. The remaining space will be filled with black bars (padding) either on the sides or top/bottom to make up the 1920x1080 resolution. This process is often referred to as "letterboxing" or "pillarboxing".
